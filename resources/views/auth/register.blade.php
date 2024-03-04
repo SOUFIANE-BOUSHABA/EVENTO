@@ -8,8 +8,19 @@
             
         </div>
 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="col-md-6 col-lg-6 ml-auto">
-            <form action="#" me>
+            <form action="{{route('register.store')}}" method="post">
+                @csrf
                 <div class="row">
 
                     <div class="input-group col-lg-6 mb-4">
@@ -34,13 +45,13 @@
 
                     <div class="input-group col-lg-6 mb-4">
                       
-                        <input id="passwordConfirmation" type="text" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
+                        <input id="passwordConfirmation" type="password" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
                     </div>
 
                     <div class="form-group col-lg-12 mx-auto mb-0">
-                        <a href="#" class="btn btn-primary btn-block py-2">
+                        <button type="submit" class="btn btn-primary btn-block py-2">
                             <span class="font-weight-bold">Create your account</span>
-                        </a>
+                        </button>
                     </div>
 
 
