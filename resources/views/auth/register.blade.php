@@ -9,7 +9,7 @@
         </div>
 
         <div class="col-md-6 col-lg-6 ml-auto">
-            <form action="#">
+            <form action="#" me>
                 <div class="row">
 
                     <div class="input-group col-lg-6 mb-4">
