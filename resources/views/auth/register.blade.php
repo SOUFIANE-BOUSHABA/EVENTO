@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.appUser')
 @section('content')
 <div class="container">
     <div class="row py-5 mt-4 align-items-center justify-content-between">
@@ -45,7 +45,7 @@
 
 
                     <div class="mt-4 w-100">
-                        <p class="text-muted font-weight-bold">Already Registered? <a href="#" class="text-primary ml-2">Login</a></p>
+                        <p class="text-muted font-weight-bold">Already Registered? <a href="{{ route('login') }}" class="text-primary ml-2">Login</a></p>
                     </div>
 
                 </div>
