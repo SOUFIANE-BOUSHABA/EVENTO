@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\VerificationEmail;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -21,25 +21,25 @@ class AuthController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $this->validate($request, [
             'firstname' => 'required',
             'lastname' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email |unique:users',
             'password' => 'required|min:6'
         ]);
         $user = User::create([
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => Hash::make($request->password)
         ]);
-        try {
-            Mail::to($user->email)->send(new VerificationEmail($user));
-        } catch (\Exception $e) {
+    
+        $verificationUrl = route('verification.verify', ['id' => $user->id]);
 
-            return redirect()->back()->withErrors(['email' => 'Failed to send verification email']);
-        }
+        Mail::send('auth.verifyEmail', ['verificationUrl' => $verificationUrl], function ($message) use ($request) {
+            $message->to($request->email);
+            $message->subject('Verify Your Email Address');
+        });
 
         return redirect('/login')->with('success', 'Please check your email to activate your account');
     }

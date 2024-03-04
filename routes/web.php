@@ -28,3 +28,6 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
  Route::post('/submit-forgot',[PasswordController::class,'store'])->name('store.forgot.password');
  Route::get('/password/reset/{token}', [PasswordController::class, 'showResetForm'])->name('password.reset');
  Route::post('/password/reset', [PasswordController::class, 'reset'])->name('password.update');
+
+
+ Route::get('/email/verify/{id}', [VerifyController::class, 'virefyAccount'])->name('verification.verify');
