@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\StatistiqueController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerifyController;
@@ -61,3 +62,9 @@ Route::get('/show.tickets/{id}',[TicketController::class,'showTickets'])->name('
 Route::post('/store.tickets/{id}',[TicketController::class,'storeTickets'])->name('store.tickets');
 Route::get('/delete.tickets/{id}',[TicketController::class,'deleteTicket'])->name('delete.tickets');
 Route::put('/update.tickets/{id}',[TicketController::class,'editTicket'])->name('update.ticket');
+
+
+
+// statistique
+
+Route::get('/statistique',[StatistiqueController::class,'state'])->name('sattistique.admin');
