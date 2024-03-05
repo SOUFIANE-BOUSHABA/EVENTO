@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerifyController;
@@ -43,3 +44,8 @@ Route::post('/loginUser', [AuthController::class, 'loginUser'])->name('login.use
  Route::post('/store.category',[CategoryController::class,'storeCategory'])->name('store.category');
 Route::get('/delete.category/{id}',[CategoryController::class,'deleteCategory'])->name('delet.category');
 Route::put('/update.category/{id}',[CategoryController::class,'editCategory'])->name('update.category');
+
+// events route
+Route::get('/show.events',[EventController::class,'showEvent'])->name('show.events');
+Route::post('/store.event',[EventController::class,'storeEvent'])->name('events.store');
+Route::get('/delete.event/{id}',[EventController::class,'deleteEvent'])->name('delete.event');
