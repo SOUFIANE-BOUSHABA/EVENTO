@@ -116,7 +116,6 @@
     </div>
 </footer>
 
-<!-- Bootstrap JS and Popper.js are required for the carousel functionality -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 

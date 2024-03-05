@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerifyController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.register');
 })->name('register');
+
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 // Route::get('register', [AuthController::class, 'register'])->name('register');
  Route::post('store', [AuthController::class, 'store'])->name('register.store');
@@ -31,3 +33,6 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 
 
  Route::get('/email/verify/{id}', [VerifyController::class, 'virefyAccount'])->name('verification.verify');
+
+
+ Route::get('/admin-getUsers', [UserController::class, 'getUsers']);
