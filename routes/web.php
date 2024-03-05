@@ -39,8 +39,9 @@ Route::post('/loginUser', [AuthController::class, 'loginUser'])->name('login.use
 
  Route::get('/email/verify/{id}', [VerifyController::class, 'virefyAccount'])->name('verification.verify');
 
-
- Route::get('/admin-getUsers', [UserController::class, 'getUsers']);
+// users gestion
+ Route::get('/admin-getUsers', [UserController::class, 'getUsers'])->name('admin.getUsers')->middleware('role:admin');
+ Route::put('/update.an.user/{id}' , [UserController::class, 'updateUser'])->name('update.an.user')->middleware('role:admin');
 
  Route::get('/show.category',[CategoryController::class,'showCategory'])->name('show.category');
  Route::post('/store.category',[CategoryController::class,'storeCategory'])->name('store.category');
@@ -67,4 +68,4 @@ Route::put('/update.tickets/{id}',[TicketController::class,'editTicket'])->name(
 
 // statistique
 
-Route::get('/statistique',[StatistiqueController::class,'state'])->name('sattistique.admin');
+Route::get('/statistique',[StatistiqueController::class,'state'])->name('sattistique.admin')->middleware('role:admin');

@@ -27,6 +27,8 @@ class RoleSeeder extends Seeder
         $organisateur = Role::create(['name' => 'organisateur']);
 
         // Assign permissions to roles
+
+        // $admin->givePermissionsTo(['']);
         $admin->permissions()->attach([$createEvent->id, $deleteEvent->id, $updateEvent->id, $showEvent->id, $reserveEvent->id, $showUser->id, $deleteUser->id, $updateUser->id]);
         $userRole->permissions()->attach([$showEvent->id, $reserveEvent->id, $showUser->id]);
         $organisateur->permissions()->attach([$createEvent->id, $deleteEvent->id, $updateEvent->id, $showEvent->id, $reserveEvent->id]);
