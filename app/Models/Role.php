@@ -18,4 +18,20 @@ class Role extends Model
     {
         return $this->belongsToMany(User::class, 'users_roles');
     }
+
+
+    
+    public function givePermissionsTo(...$permissions)
+    {
+        $permissions = $this->getAllPermissions($permissions);
+        if ($permissions === null) {
+            return $this;
+        }
+        $this->permissions()->saveMany($permissions);
+        return $this;
+    }
+protected function getAllPermissions(array $permissions)
+    {
+        return Permission::whereIn('name', $permissions)->get();
+    }
 }
