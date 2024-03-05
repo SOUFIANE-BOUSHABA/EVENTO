@@ -48,8 +48,10 @@
                 <td>{{$event->title}}</td>
                 <td>{{$event->description}}</td>
                 <td>{{$event->date}}</td>
-                <td>{{$event->available_seats}}</td>
+                <td>{{$event->tickets->count()}}</td>
                 <td class="d-flex gap-2">
+
+                    <a href="{{route('view.tickit' , $event->id)}}" class="btn btn-primary">Tickits</a>
                    <form action="{{route('delete.event' , $event->id)}}">
                         @csrf
                         @method('delete')
@@ -58,12 +60,12 @@
 
 
 
-                   <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                   <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal{{$event->id}}">
                     edit
                   </button>
 
            {{-- edit --}}
-                  <div class="modal fade" id="exampleModalgg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal fade" id="exampleModal{{$event->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -71,14 +73,59 @@
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="" method="post">
+                            <form action="{{ route('events.edit' ,$event->id) }}" method="post"   enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
                                 <div class="mb-3">
-                                <label for="" class="form-label">Name</label> 
-                                <input type="text" class="form-control mb-4" id="category" value="" name="name" aria-describedby="">
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                    <input type="text" placeholder="Title" value="{{$event->title}}" class="form-control mb-4" id="title" name="title" aria-describedby="">
                                 </div>
+                                <div class="mb-3">
+                                    <textarea class="form-control mb-4"  placeholder="Description" id="description" name="description" rows="3">{{$event->description}}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="date" class="form-label">Date</label>
+                                    <input type="date" value="{{$event->date}}" class="form-control mb-4" id="date" name="date" aria-describedby="">
+                                </div>
+                                <div class="d-flex gap-4">
+                                    <div class="mb-3">
+                                        <label for="location" class="form-label">Location</label>
+                                        <select class="form-select mb-4" id="location" name="location_id" aria-describedby="">
+                                            @foreach($locations as $location)
+                                                <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="category" class="form-label">Category</label>
+                                        <select class="form-select mb-4" id="category" name="category_id" aria-describedby="">
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                  
+                                </div>
+                                <div class="mb-3">
+                                    <input type="number" value="{{$event->available_seats}}" placeholder="Number of Seats" class="form-control mb-4" id="seats" name="available_seats" aria-describedby="">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="file" class="form-control mb-4" name="image" aria-describedby="">
+                                </div>
+                                <div class="mb-3">
+                                    <label>Accept Reservations:</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="accept_reservations" id="accept_yes" value="1" checked>
+                                        <label class="form-check-label" for="accept_yes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="accept_reservations" id="accept_no" value="0">
+                                        <label class="form-check-label" for="accept_no">No</label>
+                                    </div>
+                                </div>
+                                
+                                
+                              
+                                <button type="submit" class="btn btn-primary">Save</button>
                             </form>
                         </div>
                        
@@ -151,15 +198,22 @@
                         </div>
                       
                     </div>
-                    <div class="mb-3">
-                        <input type="number" placeholder="Number of Seats" class="form-control mb-4" id="seats" name="available_seats" aria-describedby="">
-                    </div>
+                   
                     <div class="mb-3">
                         <input type="file" class="form-control mb-4" name="image" aria-describedby="">
                     </div>
                     <div class="mb-3">
-                       <input type="checkbox" value="1" name="acceptation">  accepter les reservations
+                        <label>Accept Reservations:</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="accept_reservations" id="accept_yes" value="1" checked>
+                            <label class="form-check-label" for="accept_yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="accept_reservations" id="accept_no" value="0">
+                            <label class="form-check-label" for="accept_no">No</label>
+                        </div>
                     </div>
+                    
                     
                   
                     <button type="submit" class="btn btn-primary">Save</button>

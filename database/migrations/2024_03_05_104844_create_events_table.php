@@ -21,8 +21,8 @@ class CreateEventsTable extends Migration
             $table->unsignedBigInteger('organisateur_id');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('location_id');
-            $table->integer('available_seats');
             $table->string('image')->nullable();
+            $table->enum('accept_admin', ['1', '0'])->default('0');
             $table->enum('accept_reservations', ['1', '0'])->default('0');
             $table->timestamps();
 
