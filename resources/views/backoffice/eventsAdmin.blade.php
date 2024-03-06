@@ -30,9 +30,9 @@
                 <td><img src="{{asset('storage/'.$event->image)}}" alt="" style="width: 50px; height: 50px"></td>
                 
                 <td>{{$event->title}}</td>
-                <td>{{$event->description}}</td>
+                <td> {{ Illuminate\Support\Str::limit($event->description, 30) }}</td>
                 <td>{{$event->date}}</td>
-                <td>{{$event->tickets->count()}}</td>
+                <td>{{$event->tickets->sum('quantity')}}</td>
                 <td class="d-flex gap-2">
 
                    <form action="{{route('accept.event.admin' , $event->id)}}" method="get">
