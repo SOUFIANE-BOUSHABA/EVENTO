@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\StatistiqueController;
 use App\Http\Controllers\TicketController;
@@ -25,6 +26,7 @@ Route::get('/', function () {
     return view('auth.register');
 })->name('register');
 
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/loginUser', [AuthController::class, 'loginUser'])->name('login.user');
 // Route::get('register', [AuthController::class, 'register'])->name('register');
@@ -69,3 +71,10 @@ Route::put('/update.tickets/{id}',[TicketController::class,'editTicket'])->name(
 // statistique
 
 Route::get('/statistique',[StatistiqueController::class,'state'])->name('sattistique.admin')->middleware('role:admin');
+
+
+// home route
+Route::get('/home' , [HomeController::class, 'index'])->name('home');
+Route::get('/event' , [HomeController::class, 'eventShow'])->name('event');
+
+Route::get('/event/{id}', [HomeController::class, 'showEventById'])->name('event.details');

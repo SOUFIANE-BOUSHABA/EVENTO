@@ -18,6 +18,7 @@ class CreateTicketsTable extends Migration
             $table->unsignedBigInteger('event_id');
             $table->enum('type', ['standard', 'vip']);
             $table->decimal('price', 8, 2);
+            $table->integer('quantity')->default(0); 
             $table->timestamps();
     
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
