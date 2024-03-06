@@ -25,6 +25,7 @@
                 <th>Id</th>
                 <th>type</th>
                 <th>price</th>
+                <th>quantity</th>
                 <th class="col-md-2 ">Action</th>
                                 
             </tr>
@@ -35,6 +36,7 @@
                 <td>{{$ticket->id}}</td>
                 <td>{{$ticket->type}}</td>
                 <td>{{$ticket->price}}</td>
+                <td>{{$ticket->quantity}}</td>
                 <td class="d-flex gap-2">
                    <form action="{{route('delete.tickets', $ticket->id)}}">
                         @csrf
@@ -77,6 +79,9 @@
                             
                                     <label for="price" class="form-label mt-3">Price</label>
                                     <input type="number" value="{{$ticket->price}}" class="form-control mb-4" id="price" name="price" aria-describedby="">
+
+                                    <label for="price" class="form-label mt-3">quantity</label>
+                                    <input type="number" value="{{$ticket->quantity}}" class="form-control mb-4" id="price" name="quantity" aria-describedby="">
                             
                                     <button type="submit" class="btn btn-primary">Save</button>
                                 </div>
@@ -143,6 +148,8 @@
             
                     <label for="price" class="form-label mt-3">Price</label>
                     <input type="number" class="form-control mb-4" id="price" name="price" aria-describedby="">
+                    <label for="price" class="form-label mt-3">quantity</label>
+                    <input type="number" value="" class="form-control mb-4" id="price" name="quantity" aria-describedby="">
             
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>

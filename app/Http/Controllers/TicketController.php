@@ -16,20 +16,24 @@ class TicketController extends Controller
         return view('backoffice.tickets', compact('tickets' , 'event'));
     }
 
-    public function storeTickets(Request $request , $id){
+    public function storeTickets(Request $request, $id)
+    {
         $request->validate([
             'type' => 'required',
             'price' => 'required',
+            'quantity' => 'required',
         ]);
-
-        $ticket = Ticket::create([
-            'type' => $request->type,
-            'price' => $request->price,
-            'event_id' => $id,
-        ]);
-
+    
+        $ticket = new Ticket();
+        $ticket->type = $request->type;
+        $ticket->price = $request->price;
+        $ticket->quantity = $request->quantity;
+        $ticket->event_id = $id;
+        $ticket->save();
+    
         return redirect()->back();
     }
+    
 
     public function deleteTicket($id){
         $ticket = Ticket::find($id);
@@ -41,11 +45,13 @@ class TicketController extends Controller
         $request->validate([
             'type' => 'required',
             'price' => 'required',
+            'quantity' => 'required',
         ]);
 
         $ticket = Ticket::find($id);
         $ticket->type = $request->type;
         $ticket->price = $request->price;
+        $ticket->quantity = $request->quantity;
         $ticket->save();
 
         return redirect()->back();

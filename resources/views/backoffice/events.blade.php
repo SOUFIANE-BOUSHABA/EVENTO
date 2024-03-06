@@ -46,21 +46,24 @@
                 <td><img src="{{asset('storage/'.$event->image)}}" alt="" style="width: 50px; height: 50px"></td>
                 
                 <td>{{$event->title}}</td>
-                <td>{{$event->description}}</td>
-                <td>{{$event->date}}</td>
-                <td>{{$event->tickets->count()}}</td>
-                <td class="d-flex gap-2">
+                <td>
+                    {{ Illuminate\Support\Str::limit($event->description, 30) }}
 
-                    <a href="{{route('view.tickit' , $event->id)}}" class="btn btn-primary">Tickits</a>
+                </td>
+                <td>{{$event->date}}</td>
+                <td>{{$event->tickets->sum('quantity')}}</td>
+                <td class="d-flex gap-2" style="height: 70px"> 
+
+                    <a href="{{route('view.tickit' , $event->id)}}" style="height: 40px"  class="btn btn-primary">Tickits</a>
                    <form action="{{route('delete.event' , $event->id)}}">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn btn-danger">delete</button>
+                        <button type="submit" style="height: 40px" class="btn btn-danger">delete</button>
                    </form>
 
 
 
-                   <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal{{$event->id}}">
+                   <button type="button" style="height: 40px" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal{{$event->id}}">
                     edit
                   </button>
 
