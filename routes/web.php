@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\StatistiqueController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
@@ -78,3 +79,5 @@ Route::get('/home' , [HomeController::class, 'index'])->name('home');
 Route::get('/event' , [HomeController::class, 'eventShow'])->name('event');
 
 Route::get('/event/{id}', [HomeController::class, 'showEventById'])->name('event.details');
+
+Route::get('/reserver/{type}/{eventId}', [ReservationController::class, 'reserve'])->name('reserver');

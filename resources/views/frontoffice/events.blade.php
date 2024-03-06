@@ -49,7 +49,7 @@
     <div class="row">
         @foreach ($events as $event)
         <div class="col-md-3 mt-4">
-            <div class="card upcoming-event-card">
+            <div class="card upcoming-event-card h-100">
                 <img  src="{{asset('storage/'.$event->image)}}" class="card-img-top" alt="Event 1">
                 <div class="card-body">
                     <h5 class="card-title">{{$event->title}}</h5>
