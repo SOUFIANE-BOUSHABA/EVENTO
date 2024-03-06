@@ -55,8 +55,10 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             
-            if ($user->hasRole('admin') || $user->hasRole('organisateur')) {
+            if ($user->hasRole('admin')) {
                 return redirect('/admin-getUsers')->with('success', 'Welcome, Admin!');
+            }elseif ($user->hasRole('organisateur')){
+                return redirect('/show.events')->with('success', 'Welcome, Admin!');
             } elseif ($user->hasRole('user')) {
                 return redirect('/home')->with('success', 'Welcome, User!');
             } else {
@@ -65,5 +67,12 @@ class AuthController extends Controller
         }
     
         return redirect('/login')->with('error', 'Invalid login credentials');
+    }
+
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/login');
     }
 }

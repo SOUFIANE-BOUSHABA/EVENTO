@@ -7,12 +7,44 @@
     <title>Evento - Your Event Platform</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
     <style>
+        header{
+            min-height: 80px;
+            z-index: 1000;
+        }
         .hero{
+            color: white;
+            min-height:60vh;
             
-            min-height:80vh;
-            margin-bottom: 100px;
-            margin-top: 100px;
+        }
+
+        .custom-shape-divider-bottom-1709418515 {
             
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+
+        .custom-shape-divider-bottom-1709418515 svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 122px;
+        }
+
+
+
+        .custom-shape-divider-bottom-1709417514 .shape-fill {
+            fill: hsla(250, 85%, 57%, 0.96);
+        }
+
+        .sectionhero{
+            min-height: 74vh;
+            border:hsla(250, 85%, 57%, 0.96);
+            background-color: hsla(250, 85%, 57%, 0.96);
         }
         .mt-10{
             margin-top: 100px;
@@ -27,18 +59,6 @@
             opacity: .9;
             font-family: 'Ubuntu', sans-serif;
         }
-        .thissss{
-            position: relative;
-            display: grid;
-            place-items: center;
-            align-items: center;
-            background-image: url('https://via.placeholder.com/500x300');
-            min-height: 30vh;
-            border-radius: 10px;
-        }
-        .margin-bottom{
-            margin-bottom: 100px;
-        }
         .category-card {
             transition: box-shadow 0.3s;
         }
@@ -49,8 +69,15 @@
         .fixxx {
             display: flex;
         }
-        footer {
-          margin-top: 100px;
+        .thissss{
+            position: relative;
+            display: grid;
+            place-items: center;
+            align-items: center;
+            background-image: url('{{ asset('storage/images/testtt.jpg') }}');
+            color:white;
+            min-height: 25vh;
+            border-radius: 10px;
         }
         @media screen and (max-width: 990px) {
             .fixxx {
@@ -73,10 +100,10 @@
             <div class="col-md-8    fixxx  justify-content-between">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link" href="{{route('home')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="event.html">Events</a>
+                        <a class="nav-link" href="{{route('event')}}">Events</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
@@ -101,7 +128,10 @@
     </div>
 </header>
 
-@yield('content')
+<main>
+    @yield('content')
+</main>
+
 
 
 
