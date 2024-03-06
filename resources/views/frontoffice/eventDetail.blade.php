@@ -29,12 +29,45 @@
 
             <p class="text">Date: {{$event->date}}</p>
             <p class="text">Location: {{$event->Location->name}}</p>
-          
-          
-            <p>Available Seats: {{$event->tickets->sum('quantity')}}</p>
+        
+          <div class="col-md-6">
+            <p class="d-flex justify-content-between">
+                Available Seats VIP: {{$event->tickets->where('type', 'vip')->sum('quantity')}}
+                @if($event->tickets->where('type', 'vip')->isNotEmpty())
+                    <span>{{$event->tickets->where('type', 'vip')->first()->price}}$</span>
+                @else
+                    <span>Not available</span>
+                @endif
+            </p>
+            <p class="d-flex justify-content-between">
+                Available Seats Standard: {{$event->tickets->where('type', 'standard')->sum('quantity')}}
+                @if($event->tickets->where('type', 'standard')->isNotEmpty())
+                    <span>{{$event->tickets->where('type', 'standard')->first()->price}}$</span>
+                @else
+                    <span>Not available</span>
+                @endif
+            </p>
+          </div>
+           
+          <div class="d-flex gap-4">
+            @if($event->tickets->where('type', 'standard')->isNotEmpty())
+               <a href="{{ route('reserver', ['type' => 'standard', 'eventId' => $event->id]) }}" style="color: white; text-decoration: none;">
+                    <button class="btn btn-primary">Reserve standard <span>{{$event->tickets->where('type', 'standard')->first()->price}}$</span></button>
+               </a>
+               @else
+                    <button class="btn btn-primary" disabled>Reserve standard</button>
+            @endif
+                @if($event->tickets->where('type', 'vip')->isNotEmpty())
+                <a href="{{ route('reserver', ['type' => 'vip', 'eventId' => $event->id]) }}" style="color: white; text-decoration: none;">
+                    <button class="btn btn-primary">Reserve VIP <span>{{$event->tickets->where('type', 'vip')->first()->price}}$</span></button>
+                </a>    
+                @else
+                    <button class="btn btn-primary" disabled>Reserve VIP</button>
+                @endif
 
+          </div>
+        
           
-            <button class="btn btn-primary">Reserve Your Seat</button>
         </div>
        
     </div>
