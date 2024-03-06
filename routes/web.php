@@ -81,3 +81,20 @@ Route::get('/event' , [HomeController::class, 'eventShow'])->name('event');
 Route::get('/event/{id}', [HomeController::class, 'showEventById'])->name('event.details');
 
 Route::get('/reserver/{type}/{eventId}', [ReservationController::class, 'reserve'])->name('reserver');
+
+
+Route::get('/show.reservation',[ReservationController::class,'myResevation'])->name('myResevations');
+
+
+
+Route::post('/session', 'App\Http\Controllers\StripeController@session')->name('session');
+
+
+
+Route::get('/export-ticket', [TicketController::class, 'exportTicket'])->name('export.ticket');
+
+
+
+
+Route::get('/show.reservations',[ReservationController::class,'showReservations'])->name('show.reservations');
+Route::put('/accepter.reservation/{id}',[ReservationController::class,'accepterReservation'])->name('accepter.reservation');

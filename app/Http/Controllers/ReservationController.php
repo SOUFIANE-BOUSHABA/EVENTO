@@ -41,4 +41,29 @@ class ReservationController extends Controller
         $event->tickets->where('type', $type)->first()->decrement('quantity');
         return redirect()->back()->with('success', 'Reservation successful!');
     }
+
+
+
+
+
+    public function myResevation(){
+        $reservations = Reservation::where('user_id', auth()->user()->id)->with('ticket.event')->get();
+        return view('frontoffice.myReservations', compact('reservations'));
+    }
+
+
+
+
+
+    public function showReservations(){
+        $reservations = Reservation::where('accept_organisateur', false)->with('ticket.event')->get();
+        return view('backoffice.reservations', compact('reservations'));
+    }
+
+    public function accepterReservation($id){
+        $reservation = Reservation::find($id);
+        $reservation->accept_organisateur = true;
+        $reservation->save();
+        return redirect()->back();
+    }
 }
