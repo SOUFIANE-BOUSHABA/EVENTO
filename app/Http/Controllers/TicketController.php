@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Reservation;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class TicketController extends Controller
 {
@@ -56,4 +59,38 @@ class TicketController extends Controller
 
         return redirect()->back();
     }
+
+
+ 
+    public function exportTicket(Request $request)
+    {
+        $reservationId = $request->get('reservation_id');
+        $reservation = Reservation::find($reservationId);
+
+        if (!$reservation) {
+            abort(404);
+        }
+
+        $pdf = $this->generateTicketPDF($reservation);
+
+        return $pdf->stream('ticket.pdf');
+    }
+
+    private function generateTicketPDF($reservation)
+    {
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
+
+        $dompdf = new Dompdf($options);
+        $html = view('tickets.ticket', compact('reservation'))->render();
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        return $dompdf;
+    
+}
+
 }
