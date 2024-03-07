@@ -10,17 +10,16 @@ class HomeController extends Controller
 {
     //
     public function index(){
-        $categories = Category::take(4)->get();
 
-        $events = Event::where('accept_admin', '=', '1')->get();
-        return view('frontoffice.home', compact('categories' , 'events'));
+        $events = Event::where('accept_admin', '=', '1')->paginate(4);
+        return view('frontoffice.home', compact(  'events'));
 
 
     }
 
     public function eventShow(){
         $categories= Category::all();
-        $events = Event::where('accept_admin', '=', '1')->get();
+        $events = Event::where('accept_admin', '=', '1')->paginate(8);
         return view('frontoffice.events', compact( 'events', 'categories'));
     }
 

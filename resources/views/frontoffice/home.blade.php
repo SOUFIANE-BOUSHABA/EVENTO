@@ -98,7 +98,7 @@
 
 <section class="container my-4">
     <h2 class="fw-bold mb-4">Upcoming Events</h2>
-    <div class="row">
+    <div class="row mb-4">
         @foreach ($events as $event)
         <div class="col-md-3 mt-4 ">
             <div class="card upcoming-event-card h-100">
@@ -112,11 +112,14 @@
             </div>
         </div>
         @endforeach
+
         
 
 
         
     </div>
+
+    {{$events->links('pagination::bootstrap-4')}}
 
    
 </section>
