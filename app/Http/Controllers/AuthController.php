@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 
@@ -34,6 +36,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password)
         ]);
     
+        $user->assignRole('user');
         $verificationUrl = route('verification.verify', ['id' => $user->id]);
 
         Mail::send('auth.verifyEmail', ['verificationUrl' => $verificationUrl], function ($message) use ($request) {
@@ -42,5 +45,34 @@ class AuthController extends Controller
         });
 
         return redirect('/login')->with('success', 'Please check your email to activate your account');
+    }
+
+
+    public function loginUser(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+    
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            
+            if ($user->hasRole('admin')) {
+                return redirect('/admin-getUsers')->with('success', 'Welcome, Admin!');
+            }elseif ($user->hasRole('organisateur')){
+                return redirect('/show.events')->with('success', 'Welcome, Admin!');
+            } elseif ($user->hasRole('user')) {
+                return redirect('/home')->with('success', 'Welcome, User!');
+            } else {
+                return redirect('/')->with('error', 'Invalid role');
+            }
+        }
+    
+        return redirect('/login')->with('error', 'Invalid login credentials');
+    }
+
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/login');
     }
 }

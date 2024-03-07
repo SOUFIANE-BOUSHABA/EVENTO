@@ -8,7 +8,9 @@
         </div>
 
         <div class="col-md-6 col-lg-6 ml-auto">
-            <form action="#">
+            <form action="{{route('login.user')}}" method="post">
+                @csrf
+
                 <div class="row">
 
                     <div class="input-group col-lg-12 mb-4">
@@ -24,9 +26,9 @@
                     </div>
 
                     <div class="form-group col-lg-12 mx-auto mb-0">
-                        <a href="#" class="btn btn-primary btn-block py-2">
+                        <button type="submit" class="btn btn-primary btn-block py-2">
                             <span class="font-weight-bold">Login</span>
-                        </a>
+                        </button>
                     </div>
 
                     <div class="mt-4 w-100">
