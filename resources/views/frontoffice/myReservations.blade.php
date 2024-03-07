@@ -45,7 +45,7 @@
                                 <input type='hidden' name="total" value="{{$reservation->ticket->price }}">
                                 <input type='hidden' name="reservation_id" value="{{$reservation->id }}">
                                 <input type='hidden' name="eventname" value="{{$reservation->ticket->event->title }}">
-                                <button class="btn btn-primary" type="submit" id="checkout-live-button"><i class="fa fa-money"></i> pay</button>
+                                <button class="btn btn-primary" type="submit" id="checkout-live-button"><i class="fa fa-money"></i> pay reservation</button>
                                 </form>
 
                                 @else

@@ -35,6 +35,7 @@ trait HasPermissionsTrait
         return $this->hasPermissionThroughRole($permission) || $this->hasPermission($permission);
     }
 
+    
     public function hasPermissionThroughRole($permission)
     {
         foreach($permission->roles as $role) {
@@ -44,6 +45,7 @@ trait HasPermissionsTrait
         }
         return false;
     }
+
 
     public function hasRole(...$roles)
     {

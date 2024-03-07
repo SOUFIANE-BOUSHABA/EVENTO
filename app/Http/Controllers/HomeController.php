@@ -49,4 +49,13 @@ class HomeController extends Controller
         return view('frontoffice.Filter-category', compact('events'));
     }
 
+    public function SortEvent($date){
+        if($date == "latest"){
+            $events = Event::where('accept_admin', '=', '1')->orderBy('created_at', 'desc')->get();
+        }else{
+            $events = Event::where('accept_admin', '=', '1')->orderBy('created_at', 'asc')->get();
+        }
+        return view('frontoffice.Sort-date', compact('events'));
+    }
+
 }

@@ -21,6 +21,10 @@ class RoleMiddleware
         $role,
         $permission = null
     ): Response {
+        
+        if (!$request->user()) {
+            return redirect()->route('login'); 
+        }
         if (!$request->user()->hasRole($role)) {
             abort(404);
         }
