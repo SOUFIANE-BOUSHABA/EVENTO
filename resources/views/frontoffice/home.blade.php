@@ -14,19 +14,17 @@
                     <button class="btn btn-dark">Learn More</button>
                 </div>
 
-                <!-- Right Side - Image Carousel -->
                 <div class="col-md-6 mt-10">
                     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <!-- You can replace these image URLs with the ones you want to use -->
                             <div class="carousel-item active">
-                                <img src="https://via.placeholder.com/800x400" class="d-block w-100" alt="Slide 1">
+                                <img  src="{{asset('storage/images/417701-PDQC5B-599-removebg-preview.png')}}" class="d-block w-75" alt="Slide 1">
                             </div>
                             <div class="carousel-item">
-                                <img src="https://via.placeholder.com/800x400" class="d-block w-100" alt="Slide 2">
+                                <img src="{{asset('storage/images/417701-PDQC5B-599-removebg-preview.png')}}" class="d-block w-100" alt="Slide 2">
                             </div>
                             <div class="carousel-item">
-                                <img src="https://via.placeholder.com/800x400" class="d-block w-100" alt="Slide 3">
+                                <img src="{{asset('storage/images/417701-PDQC5B-599-removebg-preview.png')}}" class="d-block w-100" alt="Slide 3">
                             </div>
                         </div>
                     </div>

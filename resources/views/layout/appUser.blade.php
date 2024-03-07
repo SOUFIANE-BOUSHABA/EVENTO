@@ -13,7 +13,7 @@
         }
         .hero{
             color: white;
-            min-height:60vh;
+            min-height:55vh;
             
         }
 

@@ -15,6 +15,32 @@ class StripeController extends Controller
         $eventname = $request->get('eventname');
         $totalprice = $request->get('total');
         $totalInCents = intval($totalprice * 100);
+        $reservationId = $request->reservation_id;
+        $session=  $this->paye($eventname , $totalInCents ,$reservationId);
+
+      
+   
+      
+       
+
+
+        $reservation = Reservation::find($reservationId);
+
+        $this->sendTicketEmail($reservation);
+
+        return redirect()->away($session->url);
+    }
+
+    private function sendTicketEmail($reservation)
+    {
+        $ticketView = view('tickets.ticket', ['reservation' => $reservation])->render();
+        Mail::raw('Your Ticket Information', function ($message) use ($reservation, $ticketView) {
+            $message->to($reservation->user->email)->subject('Your Ticket Information');
+            $message->setBody($ticketView, 'text/html');
+        });
+    }
+
+    public function paye($eventname , $totalInCents ,$reservationId){
 
         $session = \Stripe\Checkout\Session::create([
             'line_items'  => [
@@ -32,27 +58,25 @@ class StripeController extends Controller
             ],
             'mode'        => 'payment',
 
-            'success_url' => route('myResevations'),
-            'cancel_url'  => route('myResevations'),
+            'success_url' =>  route('success', ['id' => $reservationId]),
+            'cancel_url'  => route('cancel'),
         ]);
 
-        $reservationId = $request->reservation_id;
-        Reservation::where('id', $reservationId)->update(['paid' => 1]);
-
-
-        $reservation = Reservation::find($reservationId);
-
-        $this->sendTicketEmail($reservation);
-
-        return redirect()->away($session->url);
+        return $session;
     }
 
-    private function sendTicketEmail($reservation)
+    public function success($id)
     {
-        $ticketView = view('tickets.ticket', ['reservation' => $reservation])->render();
-        Mail::raw('Your Ticket Information', function ($message) use ($reservation, $ticketView) {
-            $message->to($reservation->user->email)->subject('Your Ticket Information');
-            $message->setBody($ticketView, 'text/html');
-        });
+       
+
+        if($id){
+            Reservation::where('id', $id)->update(['paid' => 1]);
+        }
+      
+    }
+
+    public function cancel()
+    {
+        dd('cancel');
     }
 }

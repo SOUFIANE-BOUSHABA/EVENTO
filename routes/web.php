@@ -92,7 +92,8 @@ Route::get('/show.reservation',[ReservationController::class,'myResevation'])->n
 
 
 Route::post('/session', 'App\Http\Controllers\StripeController@session')->name('session');
-
+Route::get('/success/{id}', 'App\Http\Controllers\StripeController@success')->name('success');
+Route::get('/cancel', 'App\Http\Controllers\StripeController@cancel')->name('cancel');
 
 
 Route::get('/export-ticket', [TicketController::class, 'exportTicket'])->name('export.ticket');
