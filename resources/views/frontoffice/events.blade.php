@@ -21,14 +21,16 @@
     <div class="row">
         <div class="col-md-4">
             <label for="titleFilter" class="form-label">Search by Title:</label>
-            <input type="text" class="form-control" id="titleFilter" placeholder="Enter title...">
+            <input type="text" class="form-control" id="titleFilter" placeholder="Enter title..." onkeyup="search()">
         </div>
         <div class="col-md-4">
-            <label for="categoryFilter" class="form-label">Sort by Category:</label>
-            <select class="form-select" id="categoryFilter">
+            <label for="categoryFilter" class="form-label">Filter by Category:</label>
+            <select class="form-select" id="categoryFilter" onchange="filter()" >
                 <option value="all">All Categories</option>
-                <option value="category1">Category 1</option>
-                <option value="category2">Category 2</option>
+                @foreach($categories as $category)
+                <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
+               
             </select>
         </div>
         <div class="col-md-4">
@@ -46,7 +48,7 @@
 
 <section class="container my-4">
     <h2 class="fw-bold mb-4"> Events</h2>
-    <div class="row">
+    <div class="row" id="eventsContainer">
         @foreach ($events as $event)
         <div class="col-md-3 mt-4">
             <div class="card upcoming-event-card h-100">
@@ -67,6 +69,41 @@
 </section>
 
 
+
+<script>
+function search() {
+    var valueInput = document.getElementById('titleFilter').value;  
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("eventsContainer").innerHTML = xhttp.responseText;
+        }
+    };
+    if (valueInput == '') {
+        var url = '/SearchEvent/AllEventSearch';
+    } else {
+        var url = '/SearchEvent/' + valueInput;
+    }
+
+    xhttp.open("GET", url, true);
+    xhttp.send();
+}
+
+function filter() {
+    var category = document.getElementById('categoryFilter').value;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("eventsContainer").innerHTML = xhttp.responseText;
+        }
+    };
+    var url = '/FilterEvent/' + category ;
+    xhttp.open("GET", url, true);
+    xhttp.send();
+}
+
+
+</script>
 
 
 @endsection
