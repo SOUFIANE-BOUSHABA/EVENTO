@@ -49,7 +49,7 @@ Route::get('/delete.category/{id}',[CategoryController::class,'deleteCategory'])
 Route::put('/update.category/{id}',[CategoryController::class,'editCategory'])->name('update.category')->middleware('role:admin');
 
 // events route
-Route::get('/show.events',[EventController::class,'showEvent'])->name('show.events')->middleware('role:admin')->middleware('role:organisateur');
+Route::get('/show.events',[EventController::class,'showEvent'])->name('show.events')->middleware('role:organisateur');
 Route::post('/store.event',[EventController::class,'storeEvent'])->name('events.store')->middleware('role:organisateur');
 Route::get('/delete.event/{id}',[EventController::class,'deleteEvent'])->name('delete.event')->middleware('role:organisateur');
 Route::put('/update.event/{id}',[EventController::class,'editEvent'])->name('events.edit')->middleware('role:organisateur');
