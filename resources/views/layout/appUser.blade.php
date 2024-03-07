@@ -111,9 +111,28 @@
                 </ul>
     
                 <div class="navbar-nav">
+                   
+                    @guest
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          
                             My Account
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{route('register')}}">Register</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="{{route('login')}}">Login</a></li>
+                        </ul>
+                    </div>
+                    @endguest
+                  
+
+
+                    @auth
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          
+                           {{Auth::user()->name}}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{route('myResevations')}}">Reservations</a></li>
@@ -122,6 +141,7 @@
                             <li><a class="dropdown-item text-danger" href="{{route('logout')}}">Logout</a></li>
                         </ul>
                     </div>
+                    @endauth
                 </div>
             </div>
         </div>
