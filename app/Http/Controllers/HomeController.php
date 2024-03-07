@@ -10,17 +10,16 @@ class HomeController extends Controller
 {
     //
     public function index(){
-        $categories = Category::take(4)->get();
 
-        $events = Event::where('accept_admin', '=', '1')->get();
-        return view('frontoffice.home', compact('categories' , 'events'));
+        $events = Event::where('accept_admin', '=', '1')->paginate(4);
+        return view('frontoffice.home', compact(  'events'));
 
 
     }
 
     public function eventShow(){
         $categories= Category::all();
-        $events = Event::where('accept_admin', '=', '1')->get();
+        $events = Event::where('accept_admin', '=', '1')->paginate(8);
         return view('frontoffice.events', compact( 'events', 'categories'));
     }
 
@@ -47,6 +46,15 @@ class HomeController extends Controller
     public function filterEvent($id){
         $events = Event::where('category_id', $id)->where('accept_admin', '=', '1')->get();
         return view('frontoffice.Filter-category', compact('events'));
+    }
+
+    public function SortEvent($date){
+        if($date == "latest"){
+            $events = Event::where('accept_admin', '=', '1')->orderBy('created_at', 'desc')->get();
+        }else{
+            $events = Event::where('accept_admin', '=', '1')->orderBy('created_at', 'asc')->get();
+        }
+        return view('frontoffice.Sort-date', compact('events'));
     }
 
 }
