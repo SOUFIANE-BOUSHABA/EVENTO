@@ -35,7 +35,7 @@
         </div>
         <div class="col-md-4">
             <label for="dateFilter" class="form-label">Sort by Date:</label>
-            <select class="form-select" id="dateFilter">
+            <select class="form-select" id="dateFilter" onchange="sort()">
                 <option value="latest">Latest</option>
                 <option value="oldest">Oldest</option>
             </select>
@@ -98,6 +98,19 @@ function filter() {
         }
     };
     var url = '/FilterEvent/' + category ;
+    xhttp.open("GET", url, true);
+    xhttp.send();
+}
+
+function sort() {
+    var date = document.getElementById('dateFilter').value;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("eventsContainer").innerHTML = xhttp.responseText;
+        }
+    };
+    var url = '/SortEvent/' + date ;
     xhttp.open("GET", url, true);
     xhttp.send();
 }

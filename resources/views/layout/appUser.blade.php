@@ -132,9 +132,9 @@
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           
-                           {{Auth::user()->name}}
+                           {{Auth::user()->firstname}}
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu" style="margin-left: -70px" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{route('myResevations')}}">Reservations</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
                             <li><hr class="dropdown-divider"></li>

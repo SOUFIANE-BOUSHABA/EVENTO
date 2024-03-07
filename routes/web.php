@@ -76,6 +76,7 @@ Route::get('/home' , [HomeController::class, 'index'])->name('home');
 Route::get('/event' , [HomeController::class, 'eventShow'])->name('event');
 Route::get('/SearchEvent/{search}', [HomeController::class, 'searchEvent'])->name('searchEvent');
 Route::get('FilterEvent/{id}', [HomeController::class, 'filterEvent'])->name('filterEvent');
+Route::get('SortEvent/{date}', [HomeController::class, 'SortEvent'])->name('SortEvent');
 Route::get('/event/{id}', [HomeController::class, 'showEventById'])->name('event.details');
 
 
