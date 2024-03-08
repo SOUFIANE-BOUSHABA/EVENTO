@@ -135,6 +135,12 @@
                            {{Auth::user()->firstname}}
                         </a>
                         <ul class="dropdown-menu" style="margin-left: -70px" aria-labelledby="navbarDropdown">
+                            @role('admin')
+                            <li><a class="dropdown-item" href="{{url('admin-getUsers')}}">dashboard</a></li>
+                            @endrole
+                            @role('organisateur')
+                            <li><a class="dropdown-item" href="{{url('show.events')}}">dashboard</a></li>
+                            @endrole
                             <li><a class="dropdown-item" href="{{route('myResevations')}}">Reservations</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
                             <li><hr class="dropdown-divider"></li>
