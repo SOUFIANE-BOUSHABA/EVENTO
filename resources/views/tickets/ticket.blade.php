@@ -15,6 +15,12 @@
         p {
             margin-bottom: 10px;
         }
+        .mt-4 {
+            margin-top: 20px;
+        }
+        .mb-4 {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -23,6 +29,14 @@
     <p><strong>Type:</strong> {{ $reservation->ticket->type }}</p>
     <p><strong>Price:</strong> {{ $reservation->ticket->price }}$</p>
     <p><strong>Name:</strong> {{ $reservation->user->firstname}} {{ $reservation->user->lastname}}</p>
-    <p><strong>Location:</strong> {{ $reservation->ticket->event->Location->name }}</p>
+    <p class="mb-4"><strong>Location:</strong> {{ $reservation->ticket->event->Location->name }}</p>
+
+   
+    
+    <div class="signature mt-4 opacity-50">
+        Thank you for choosing our event!
+    </div>
+  
+    
 </body>
 </html>

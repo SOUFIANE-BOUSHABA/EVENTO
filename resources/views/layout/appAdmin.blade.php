@@ -185,9 +185,9 @@ input:focus {
                 @endif
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="{{route('logout')}}">logout</a></li>
+                <li><a class="dropdown-item" href="{{url('/home')}}">Home</a></li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><a class="dropdown-item text-danger" href="{{route('logout')}}">Logout</a></li>
             </ul>
             </div>
 

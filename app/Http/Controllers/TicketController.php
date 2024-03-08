@@ -86,11 +86,11 @@ class TicketController extends Controller
         $html = view('tickets.ticket', compact('reservation'))->render();
 
         $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->setPaper('A6', 'portrait');
         $dompdf->render();
 
         return $dompdf;
     
-}
+    }
 
 }
