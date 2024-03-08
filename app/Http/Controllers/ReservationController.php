@@ -56,7 +56,15 @@ class ReservationController extends Controller
 
 
     public function showReservations(){
-        $reservations = Reservation::where('accept_organisateur', false)->with('ticket.event')->get();
+        $id = auth()->user()->id;
+        $reservations = Reservation::join('tickets', 'reservations.ticket_id', '=', 'tickets.id')
+        ->join('events', 'tickets.event_id', '=', 'events.id')
+        ->where('events.organisateur_id', $id)
+        ->where('reservations.accept_organisateur', false)
+        ->select('reservations.*')
+        ->with('ticket.event')
+        ->get();
+
         return view('backoffice.reservations', compact('reservations'));
     }
 
