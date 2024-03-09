@@ -37,7 +37,8 @@ class EventController extends Controller
         ]);
        
         if ($request->hasFile('image')) {             
-                $imagePath = $request->file('image')->store('images', 'public');       
+            $imageName = time().'.'.$request->image->extension();  
+            $request->image->move(public_path('images'), $imageName);
         }
 
        
@@ -48,7 +49,7 @@ class EventController extends Controller
             'organisateur_id' => Auth::user()->id,
             'category_id' => $request->category_id,
             'location_id' => $request->location_id,
-            'image' => $imagePath, 
+            'image' => 'images/'.$imageName, 
             'accept_reservations' => $request->accept_reservations,
         ]);
     

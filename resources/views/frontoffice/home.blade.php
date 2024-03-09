@@ -21,10 +21,10 @@
                                 <img  src="{{asset('images/417701-PDQC5B-599-removebg-preview.png')}}" class="d-block w-75" alt="Slide 1">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{asset('storage/images/417701-PDQC5B-599-removebg-preview.png')}}" class="d-block w-75" alt="Slide 2">
+                                <img src="{{asset('images/417701-PDQC5B-599-removebg-preview.png')}}" class="d-block w-75" alt="Slide 2">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{asset('storage/images/417701-PDQC5B-599-removebg-preview.png')}}" class="d-block w-75" alt="Slide 3">
+                                <img src="{{asset('images/417701-PDQC5B-599-removebg-preview.png')}}" class="d-block w-75" alt="Slide 3">
                             </div>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
         @foreach ($events as $event)
         <div class="col-md-3 mt-4 ">
             <div class="card upcoming-event-card h-100">
-                <img  src="{{asset('storage/'.$event->image)}}" class="card-img-top" alt="Event 1">
+                <img  src="{{asset('/'. $event->image)}}" class="card-img-top" alt="Event 1">
                 <div class="card-body">
                     <h5 class="card-title">{{$event->title}}</h5>
                     <p>{{$event->date}}</p>
@@ -111,7 +111,8 @@
                 </div>
             </div>
         </div>
-        @endforeach
+        @endforeach  
+        
 
         
 
