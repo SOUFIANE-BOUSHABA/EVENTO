@@ -18,7 +18,7 @@
                     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img  src="{{asset('storage/images/417701-PDQC5B-599-removebg-preview.png')}}" class="d-block w-75" alt="Slide 1">
+                                <img  src="{{asset('images/417701-PDQC5B-599-removebg-preview.png')}}" class="d-block w-75" alt="Slide 1">
                             </div>
                             <div class="carousel-item">
                                 <img src="{{asset('storage/images/417701-PDQC5B-599-removebg-preview.png')}}" class="d-block w-75" alt="Slide 2">
