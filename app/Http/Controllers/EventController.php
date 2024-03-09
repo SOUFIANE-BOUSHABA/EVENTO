@@ -76,7 +76,6 @@ class EventController extends Controller
             'date' => 'required',
             'category_id' => 'required',
             'location_id' => 'required',
-            'available_seats' => 'required',
             'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048|file',
             'accept_reservations' => 'required|boolean', 
         ]);
@@ -92,7 +91,6 @@ class EventController extends Controller
             'organisateur_id' => Auth::user()->id,
             'category_id' => $request->category_id,
             'location_id' => $request->location_id,
-            'available_seats' => $request->available_seats,
             'image' => $imagePath, 
             'accept_reservations' => $request->accept_reservations,
         ]);
