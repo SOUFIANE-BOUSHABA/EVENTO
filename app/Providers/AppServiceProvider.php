@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
+use App\Services\CategoryService;
+use App\Repository\CategoryRepository;
+use App\Services\ICategoryService;
+use App\Repository\ICategoryRepository;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -18,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
     {
         //
 
+
+        $this->app->bind(ICategoryService::class, CategoryService::class);
+        $this->app->bind(ICategoryRepository::class, CategoryRepository::class);
     }
 
     /**

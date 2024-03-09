@@ -72,7 +72,7 @@ class StripeController extends Controller
         if($id){
             Reservation::where('id', $id)->update(['paid' => 1]);
         }
-        return redirect('/myResevations');
+        return route('/myResevations');
       
     }
 
