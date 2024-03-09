@@ -9,7 +9,7 @@
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <style>
         .thissss{
-            background-image: url('{{ asset('storage/images/testtt.jpg') }}');
+            background-image: url('{{ asset('images/testtt.jpg') }}');
         }
     </style>
 </head>
