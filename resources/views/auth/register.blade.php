@@ -64,4 +64,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    @if(Session::has('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: '{{ Session::get("success") }}',
+        });
+    @endif
+</script>
+
 @endsection

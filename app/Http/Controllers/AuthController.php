@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Session;
 class AuthController extends Controller
 {
     //
@@ -43,7 +43,7 @@ class AuthController extends Controller
             $message->to($request->email);
             $message->subject('Verify Your Email Address');
         });
-
+        Session::flash('success', 'Please check your email to activate your account');
         return redirect('/login')->with('success', 'Please check your email to activate your account');
     }
 
