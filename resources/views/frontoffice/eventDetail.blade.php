@@ -1,6 +1,17 @@
 @extends('layout.appUser')
 @section('content')
-
+<style>
+    .ditttail{
+        display: flex;
+        justify-content: space-between;
+    
+    }
+    @media (max-width: 768px) {
+        .ditttail{
+            flex-direction: column;
+        }
+    }
+</style>
 
 <section>
     <div class="container thissss mb-4">
@@ -18,8 +29,8 @@
 
 
 <section class="container mt-4 margin-bottom ">
-    <div class=" d-flex gap-4">
-        <img src="{{asset('storage/'.$event->image)}}" class="img-fluid col-md-6 rounded" alt="Event Image">
+    <div class="ditttail gap-4">
+        <img src="{{asset('/'.$event->image)}}" class="img-fluid col-md-6 rounded" alt="Event Image">
         <div class="col-md-6">
             <h1 class="fw-bold">{{$event->title}}</h1>
 

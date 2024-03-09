@@ -43,7 +43,7 @@
             @foreach ($events as $event)
             <tr>
 
-                <td><img src="{{asset('storage/'.$event->image)}}" alt="" style="width: 50px; height: 50px"></td>
+                <td><img src="{{asset('/'.$event->image)}}" alt="" style="width: 50px; height: 50px"></td>
                 
                 <td>{{$event->title}}</td>
                 <td>
@@ -108,9 +108,7 @@
                                     </div>
                                   
                                 </div>
-                                <div class="mb-3">
-                                    <input type="number" value="{{$event->available_seats}}" placeholder="Number of Seats" class="form-control mb-4" id="seats" name="available_seats" aria-describedby="">
-                                </div>
+                               
                                 <div class="mb-3">
                                     <input type="file" class="form-control mb-4" name="image" aria-describedby="">
                                 </div>

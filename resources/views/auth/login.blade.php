@@ -40,4 +40,34 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    window.onload = function () {
+        @if(Session::has('success'))
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+
+            Toast.fire({
+                icon: "success",
+                title: "{{ Session::get('success') }}"
+            });
+        @endif
+    }
+</script>
+
+@php
+    Session::forget('success');
+@endphp
+
+
 @endsection

@@ -7,9 +7,10 @@
     <title>Evento - Your Event Platform</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style>
         .thissss{
-            background-image: url('{{ asset('storage/images/testtt.jpg') }}');
+            background-image: url('{{ asset('images/testtt.jpg') }}');
         }
     </style>
 </head>
@@ -61,7 +62,7 @@
                           
                            {{Auth::user()->firstname}}
                         </a>
-                        <ul class="dropdown-menu" style="margin-left: -70px" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu" style="margin-left: -20px" aria-labelledby="navbarDropdown">
                             @role('admin')
                             <li><a class="dropdown-item" href="{{url('admin-getUsers')}}">dashboard</a></li>
                             @endrole

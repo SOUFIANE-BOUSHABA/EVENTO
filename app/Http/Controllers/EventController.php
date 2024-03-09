@@ -69,22 +69,36 @@ class EventController extends Controller
     }
     
 
-    public function editEvent(Request $request, $id){
+    public function editEvent(Request $request, $id)
+    {
         $event = Event::find($id);
+    
         $request->validate([
             'title' => 'required',
             'description' => 'required',
             'date' => 'required',
             'category_id' => 'required',
             'location_id' => 'required',
-            'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048|file',
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048|file',
             'accept_reservations' => 'required|boolean', 
         ]);
-       
+    
         if ($request->hasFile('image')) {             
-                $imagePath = $request->file('image')->store('images', 'public');       
+            $imageName = time().'.'.$request->image->extension();  
+            $request->image->move(public_path('images'), $imageName);
+    
+            if ($event->image) {
+                $previousImagePath = public_path($event->image);
+                if (file_exists($previousImagePath)) {
+                    unlink($previousImagePath);
+                }
+            }
+    
+            $event->update([
+                'image' => 'images/'.$imageName,
+            ]);
         }
-
+    
         $event->update([
             'title' => $request->title,
             'description' => $request->description,
@@ -92,13 +106,12 @@ class EventController extends Controller
             'organisateur_id' => Auth::user()->id,
             'category_id' => $request->category_id,
             'location_id' => $request->location_id,
-            'image' => $imagePath, 
             'accept_reservations' => $request->accept_reservations,
         ]);
     
         return redirect()->back();
     }
-
+    
 
 
     public function showEventAdmin(){

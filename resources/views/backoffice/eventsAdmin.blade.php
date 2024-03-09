@@ -27,7 +27,7 @@
             @foreach ($events as $event)
             <tr>
 
-                <td><img src="{{asset('storage/'.$event->image)}}" alt="" style="width: 50px; height: 50px"></td>
+                <td><img src="{{asset('/'.$event->image)}}" alt="" style="width: 50px; height: 50px"></td>
                 
                 <td>{{$event->title}}</td>
                 <td> {{ Illuminate\Support\Str::limit($event->description, 30) }}</td>
