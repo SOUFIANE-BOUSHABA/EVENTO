@@ -6,83 +6,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <title>Evento - Your Event Platform</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <style>
-        header{
-            min-height: 80px;
-            z-index: 1000;
-        }
-        .hero{
-            color: white;
-            min-height:55vh;
-            
-        }
-
-        .custom-shape-divider-bottom-1709418515 {
-            
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            overflow: hidden;
-            line-height: 0;
-            transform: rotate(180deg);
-        }
-
-        .custom-shape-divider-bottom-1709418515 svg {
-            position: relative;
-            display: block;
-            width: calc(100% + 1.3px);
-            height: 122px;
-        }
-
-
-
-        .custom-shape-divider-bottom-1709417514 .shape-fill {
-            fill: hsla(250, 85%, 57%, 0.96);
-        }
-
-        .sectionhero{
-            min-height: 74vh;
-            border:hsla(250, 85%, 57%, 0.96);
-            background-color: hsla(250, 85%, 57%, 0.96);
-        }
-        .mt-10{
-            margin-top: 100px;
-        }
-        .text{
-            font-size: 1.2rem;
-            opacity: .6;
-            font-family: 'Ubuntu', sans-serif;
-        }
-        h1{
-            font-size: 3rem;
-            opacity: .9;
-            font-family: 'Ubuntu', sans-serif;
-        }
-        .category-card {
-            transition: box-shadow 0.3s;
-        }
-    
-        .category-card:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .fixxx {
-            display: flex;
-        }
         .thissss{
-            position: relative;
-            display: grid;
-            place-items: center;
-            align-items: center;
             background-image: url('{{ asset('storage/images/testtt.jpg') }}');
-            color:white;
-            min-height: 25vh;
-            border-radius: 10px;
-        }
-        @media screen and (max-width: 990px) {
-            .fixxx {
-                display: grid;
-            }
         }
     </style>
 </head>
