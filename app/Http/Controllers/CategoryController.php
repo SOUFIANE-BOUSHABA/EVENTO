@@ -1,39 +1,46 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Services\ICategoryService;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    //
-    public function showCategory(){
+    protected $categoryService;
 
-        $categories = Category::all();
-        return view('backoffice.categories' , compact('categories'));
+    public function __construct(ICategoryService $categoryService)
+    {
+        $this->categoryService = $categoryService;
     }
-    public function storeCategory(Request $request){
+
+    public function showCategory()
+    {
+        $categories = $this->categoryService->getAllCategories();
+        return view('backoffice.categories', compact('categories'));
+    }
+
+    public function storeCategory(Request $request)
+    {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
-        $category = Category::create([
-            'name' => $request->name
+        $this->categoryService->createCategory([
+            'name' => $request->name,
         ]);
+
         return redirect()->back();
     }
 
-    public function deleteCategory($id){
-        $category = Category::find($id);
-        $category->delete();
+    public function deleteCategory($id)
+    {
+        $this->categoryService->deleteCategory($id);
         return redirect()->back();
     }
 
-    public function editCategory(Request $request, $id){
-        $category = Category::find($id);
-        $category->name = $request->name;
-        $category->save();
+    public function editCategory(Request $request, $id)
+    {
+        $this->categoryService->updateCategory($id, ['name' => $request->name]);
         return redirect()->back();
     }
 }
