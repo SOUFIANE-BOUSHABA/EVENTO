@@ -7,6 +7,7 @@
     <title>Evento - Your Event Platform</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/user.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style>
         .thissss{

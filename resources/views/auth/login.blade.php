@@ -8,7 +8,7 @@
         </div>
 
         <div class="col-md-6 col-lg-6 ml-auto">
-            <form action="{{route('login.user')}}" method="post">
+            <form action="{{route('login.user')}}"  onsubmit="return login(event);" method="post" id="Lform">
                 @csrf
 
                 <div class="row">
@@ -62,6 +62,49 @@
                 title: "{{ Session::get('success') }}"
             });
         @endif
+        @if(Session::has('error'))
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+
+            Toast.fire({
+                icon: "success",
+                title: "{{ Session::get('error') }}"
+            });
+        @endif
+    }
+
+
+    function login(event) {
+        event.preventDefault(); 
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+        if (email == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Email is required!',
+            });
+            return false;
+        } else if (password == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Password is required!',
+            });
+            return false;
+        } else {
+            document.getElementById('Lform').submit();
+        }
     }
 </script>
 

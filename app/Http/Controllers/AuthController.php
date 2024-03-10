@@ -55,6 +55,12 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             
+            if ($user->is_blocked) {
+                Auth::logout();
+                Session::flash('error', 'Votre compte est bloqué.');
+                return redirect('/login');
+            }
+            
             if ($user->hasRole('admin')) {
                 return redirect('/admin-getUsers')->with('success', 'Welcome, Admin!');
             }elseif ($user->hasRole('organisateur')){

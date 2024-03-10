@@ -42,6 +42,9 @@ Route::post('/loginUser', [AuthController::class, 'loginUser'])->name('login.use
 // users gestion
  Route::get('/admin-getUsers', [UserController::class, 'getUsers'])->name('admin.getUsers')->middleware('role:admin');
  Route::put('/update.an.user/{id}' , [UserController::class, 'updateUser'])->name('update.an.user')->middleware('role:admin');
+ Route::get('blocker.user/{id}', [UserController::class, 'blockerUser'])->name('blocker.user')->middleware('role:admin');
+ Route::get('unblocker.user/{id}', [UserController::class, 'blockerUser'])->name('unblocker.user')->middleware('role:admin');
+ 
 
  Route::get('/show.category',[CategoryController::class,'showCategory'])->name('show.category')->middleware('role:admin');
  Route::post('/store.category',[CategoryController::class,'storeCategory'])->name('store.category')->middleware('role:admin');
@@ -69,6 +72,7 @@ Route::put('/update.tickets/{id}',[TicketController::class,'editTicket'])->name(
 // statistique
 
 Route::get('/statistique',[StatistiqueController::class,'state'])->name('sattistique.admin')->middleware('role:admin');
+Route::get('/statistique.organisateur',[StatistiqueController::class,'state'])->name('sattistique.organisateur')->middleware('role:organisateur');
 
 
 // home route
