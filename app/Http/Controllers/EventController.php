@@ -25,6 +25,7 @@ class EventController extends Controller
         return view('backoffice.events', compact('events', 'categories', 'locations'));
     }
 
+
     public function storeEvent(Request $request)
     {
        
