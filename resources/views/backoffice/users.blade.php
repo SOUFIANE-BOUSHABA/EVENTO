@@ -34,9 +34,17 @@
                 @endforeach
             </td>
               <td>
+                @if($user->is_blocked == 0)
+                  <a href="{{route('blocker.user' , $user->id)}}" class="btn btn-danger"> bloqué</a>
+                
+                @else
+                  <a href="{{route('unblocker.user' , $user->id)}}" class="btn btn-danger"> débloqué</a>
+                
+                @endif
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$user->id}}">
                     Edit Role
                   </button>
+
 
                   <div class="modal fade" id="exampleModal{{$user->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">

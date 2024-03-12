@@ -7,7 +7,6 @@ use App\Models\Event;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 
@@ -19,9 +18,13 @@ class EventController extends Controller
         $events = Event::where('organisateur_id', $id)->get();
         $categories = Category::all();
         $locations = Location::all();
+
+        // ->join('categories', 'events.category_id', '=', 'categories.id')
+        // ->join('locations', 'events.location_id', '=', 'locations.id')
         
         return view('backoffice.events', compact('events', 'categories', 'locations'));
     }
+
 
     public function storeEvent(Request $request)
     {

@@ -26,4 +26,13 @@ class StatistiqueController extends Controller
 
         return view('backoffice.statistiques', compact('countusers', 'countevents', 'reservationcount', 'counttickets', 'labels', 'data'));
     }
+
+
+
+    // $events = Event::where('organisateur_id', $id)
+    // ->join('categories', 'events.category_id', '=', 'categories.id')
+    // ->join('locations', 'events.location_id', '=', 'locations.id')
+    // ->select('events.*', 'categories.name as category_name', 'locations.name as location_name')
+    // ->withCount('reservations') // Assuming 'reservations' is the relationship name in your Event model
+    // ->get();
 }

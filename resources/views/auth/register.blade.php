@@ -19,7 +19,7 @@
         @endif
 
         <div class="col-md-6 col-lg-6 ml-auto">
-            <form action="{{route('register.store')}}" method="post">
+            <form action="{{route('register.store')}}" method="post" id="Rform">
                 @csrf
                 <div class="row">
 

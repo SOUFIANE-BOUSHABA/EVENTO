@@ -30,13 +30,16 @@ class HomeController extends Controller
 
 
 
-    public function searchEvent($search)
+    public function searchEvent($search , $category , $date)
     {
         if ($search == "AllEventSearch") {
             $events = Event::where('accept_admin', '=', '1')->get();
         } else {
             $events = Event::where('accept_admin', '=', '1')
                         ->where('title', 'like', '%' . $search . '%')
+                        ->where('category_id', $category)
+                        ->where('created_at', $date)->orderBy('created_at', $date)
+
                         ->get();
         }
 

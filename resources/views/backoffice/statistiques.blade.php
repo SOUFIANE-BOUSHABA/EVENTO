@@ -12,12 +12,14 @@
 
     <div class="card-deck mt-4 d-flex  justify-content-between gap-4">
 
+        @role('admin')
         <div class="card shadow-sm">
             <div class="card-body">
                 <h5 class="card-title">User Count</h5>
                 <p class="card-text">{{ $countusers }}</p>
             </div>
         </div>
+        @endrole
 
         <div class="card shadow-sm">
             <div class="card-body">
@@ -43,13 +45,14 @@
 
     </div>
 
+    @role('admin')
     <div class=" shadow-sm d-flex">
       <div class="card-body col-md-6">
           <h5 class="card-title">Reservations per Day</h5>
           <canvas id="reservationsChart" width="400" height="200"></canvas>
       </div>
 
-  </div>
+  </div>@endrole
 
  
 

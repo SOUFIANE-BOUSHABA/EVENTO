@@ -11,8 +11,8 @@ class UserController extends Controller
     //
     public function getUsers(){
 
-        $users = User::all();
         $roles = Role::all();
+        $users = User::with('roles')->get();
         return view('backoffice.users' , compact('users' , 'roles'));
     }
 
@@ -20,6 +20,13 @@ class UserController extends Controller
 
         $user=User::find($id);
         $user->roles()->sync($request->role);
+        return redirect()->back();
+    }
+
+    public function blockerUser($id){
+        $user = User::find($id);
+        $user->is_blocked = !$user->is_blocked;
+        $user->save();
         return redirect()->back();
     }
 }
